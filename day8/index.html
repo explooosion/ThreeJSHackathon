@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/gl-matrix/2.3.2/gl-matrix-min.js"></script>
+  
+    <script id="shader-vs" type="x-shader/x-vertex">
+        attribute vec4 coords;
+        attribute vec2 textureCoords;
+        attribute float pointSize;
+        uniform mat4 u_transformMatrix;
+        uniform mat4 u_perspectiveMatrix;
+        attribute vec4 colors;
+        varying vec4 varyingColors;
+        
+        varying vec2 v_textureCoords;
+
+        void main(void) {
+            v_textureCoords = textureCoords;
+            gl_Position = u_perspectiveMatrix * u_transformMatrix  * coords;
+            gl_PointSize = pointSize;
+            varyingColors = colors;
+        }
+    </script>
+    
+    <script id="shader-fs" type="x-shader/x-fragment">
+        precision mediump float;
+        uniform vec4 color;
+        varying vec4 varyingColors;
+        
+        varying vec2 v_textureCoords;
+        uniform sampler2D sampler;
+        void main(void) {
+            gl_FragColor = texture2D(sampler, v_textureCoords);
+        }
+    </script>
+</head>
+
+<body>
+
+    <canvas id="canvas" width="800" height="640"></canvas>
+    <script src="./main.js"></script>
+</body>
+
+</html>
