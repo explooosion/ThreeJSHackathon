@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script id="shader-fs" type="x-shader/x-fragment">
+ 
+        // shader program
+        precision mediump float;
+        varying lowp vec4 vColor;
+        void main(void) {
+            gl_FragColor = vColor;
+        }
+
+    </script>
+    <script id="shader-vs" type="x-shader/x-vertex">
+ 
+        attribute vec4 position;
+        attribute float size;
+        
+        attribute vec4 aVertexColor;
+        
+        varying lowp vec4 vColor;
+        
+        void main(void) {
+            gl_Position = position;
+            vColor = aVertexColor;
+        }
+
+    </script>
+</head>
+
+<body>
+    <canvas id="canvas" width="600" height="600"></canvas>
+</body>
+<script src="./main2.js"></script>
+
+</html>
