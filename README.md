@@ -1,2 +1,2 @@
-# TreeJSHackathon
-this is a repo for tree.js hackathon
+# ThreeJSHackathon
+this is a repo for three.js hackathon
